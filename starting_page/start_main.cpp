@@ -24,29 +24,37 @@ void run_starting_page() {
     SDL_Window* window = SDL_CreateWindow("Communityland",
         1366, 768, 0);
 
-
+    // Create Renderer
     SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
 
-
+    // Make background image texture
     SDL_Texture* background_texture = IMG_LoadTexture(renderer, background.c_str());
+
+
     bool running = true;
 
     SDL_Event event;
+
+
     while (running) {
 
+        // Rando event so window works
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) running = false;
         }
 
+        // Set backgroun image to black then clear
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
+        // Set intended image as background
         SDL_RenderTexture(renderer, background_texture, NULL, NULL);
 
         SDL_RenderPresent(renderer);
 
     }
 
+    // Destory all
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
