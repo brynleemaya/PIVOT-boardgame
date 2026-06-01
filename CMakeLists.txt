@@ -12,10 +12,16 @@ add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
 # This assumes the SDL_image source is available in vendored/SDL_image
 add_subdirectory(vendored/SDL_image EXCLUDE_FROM_ALL)
 
+# This assumes the SDL_image source is available in vendored/SDL_image
+add_subdirectory(vendored/SDL_ttf EXCLUDE_FROM_ALL)
+
 # Create your game executable target as usual
 add_executable(PIVOT_boardgame WIN32 main.cpp
                 starting_page/start_main.cpp
-                starting_page/start_main.h)
+)
 
 # Link to the actual SDL3 library.
-target_link_libraries(PIVOT_boardgame PRIVATE SDL3_image::SDL3_image SDL3::SDL3)
+target_link_libraries(PIVOT_boardgame PRIVATE
+        SDL3_ttf::SDL3_ttf
+        SDL3_image::SDL3_image
+        SDL3::SDL3)
