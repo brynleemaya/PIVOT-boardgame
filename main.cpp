@@ -5,10 +5,11 @@
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include "starting_page/start_main.h"
+#include "boardgame_page/boardgame.h"
 
 using namespace std;
 
 int main() {
-    run_starting_page();
+    run_question();
 
 }

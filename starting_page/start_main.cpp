@@ -2,7 +2,7 @@
 // Created by Brynlee Crispin on 5/31/26.
 //
 
-
+/*
 #include <iostream>
 #include <string>
 #include <SDL3/SDL.h>
@@ -18,7 +18,7 @@ using namespace std;
 void run_starting_page() {
 
     // Declare background image
-    string background = "/Users/brynleemaya/PIVOT/PIVOT-boardgame/starting_page/page_images/welcome.png";
+    string background = "/Users/brynleemaya/PIVOT/PIVOT-boardgame/starting_page/qpage_images/welcome.png"; //fix
 
     // Create window
     SDL_Window* window = SDL_CreateWindow("Communityland",
@@ -60,9 +60,7 @@ void run_starting_page() {
 
                } while (true);
 
-
         }
-
 
         // Set background image to black then clear
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -87,3 +85,5 @@ void run_starting_page() {
     SDL_Quit();
 
 }
+
+*/
