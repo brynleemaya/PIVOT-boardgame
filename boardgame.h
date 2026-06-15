@@ -1,0 +1,8 @@
+//
+// Created by Brynlee Crispin on 6/15/26.
+//
+
+#ifndef PIVOT_BOARDGAME_BOARDGAME_H
+#define PIVOT_BOARDGAME_BOARDGAME_H
+
+#endif //PIVOT_BOARDGAME_BOARDGAME_H

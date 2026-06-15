@@ -18,6 +18,8 @@ add_subdirectory(vendored/SDL_ttf EXCLUDE_FROM_ALL)
 # Create your game executable target as usual
 add_executable(PIVOT_boardgame WIN32 main.cpp
                 starting_page/start_main.cpp
+        boardgame.cpp
+        boardgame.h
 )
 
 # Link to the actual SDL3 library.
