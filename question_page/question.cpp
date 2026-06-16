@@ -11,16 +11,17 @@
 
 
 using namespace std;
-
+/*
 void update_total_time(char* buffer, size_t size, double duration) {
     int time = int(duration) / 60;
 
     sprintf(buffer, "%02d", time);
 }
-
+*/
 void run_question() {
 
     Uint32 countdown = 30;
+    char time_text[15];
     bool is_paused = false;
 
 
@@ -39,11 +40,13 @@ void run_question() {
     // Make background image texture
     SDL_Texture* qbackground_texture = IMG_LoadTexture(renderer, question_background.c_str());
 
+    // Generate fonts
+    TTF_Font* gagalin = TTF_OpenFont("/Users/brynleemaya/PIVOT/PIVOT-boardgame/fonts/Gagalin.otf", 12);
 
     bool running = true;
 
     SDL_Event event;
-
+    SDL_Color white = {0, 0, 0, 0};
 
     while (running) {
         // Event so window is functional
@@ -51,6 +54,16 @@ void run_question() {
             if (event.type == SDL_EVENT_QUIT) {
                 running = false;
             }
+
+
+            SDL_Surface* total = TTF_RenderText_Blended(gagalin, countdown, white);
+
+            SDL_Texture* total_texture = SDL_CreateTextureFromSurface(renderer, total);
+            SDL_Rect total_rect = {530, 420, total->w, total->h};
+            SDL_RenderCopy(renderer, total_texture, NULL, &total_rect);
+
+
+            sprintf(time_text, "%02d:%02d", minutes, seconds);
 
             // Timer mechanics
             if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
@@ -77,6 +90,9 @@ void run_question() {
 
         // Set intended image as background
         SDL_RenderTexture(renderer, qbackground_texture, NULL, NULL);
+
+        SDL_Surface* text_surface = TTF_RenderText_Blended(gagalin, time_text, white);
+        SDL_Texture* text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
 
         SDL_RenderPresent(renderer);
 
