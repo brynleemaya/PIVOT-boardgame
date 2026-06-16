@@ -13,7 +13,7 @@ using namespace std;
 
 void run_question() {
 
-    string boardgame_background = "../boardgame_page/qpage_images/main_page.png"; //???????
+    string boardgame_background = "../boardgame_page/qpage_images/main_page.png"; // TODO: FIX THIS!
 
     // Create window
     SDL_Window* window = SDL_CreateWindow("Communityland",

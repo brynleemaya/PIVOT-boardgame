@@ -18,7 +18,7 @@ using namespace std;
 void run_starting_page() {
 
     // Declare background image
-    string background = "/Users/brynleemaya/PIVOT/PIVOT-boardgame/starting_page/qpage_images/welcome.png"; //fix
+    string background = "/Users/brynleemaya/PIVOT/PIVOT-boardgame/starting_page/qpage_images/welcome.png"; // TODO: FIX THIS!
 
     // Create window
     SDL_Window* window = SDL_CreateWindow("Communityland",
