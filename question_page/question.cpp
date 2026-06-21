@@ -20,8 +20,9 @@ void update_total_time(char* buffer, size_t size, double duration) {
 */
 void run_question() {
 
+    // Starting countdown unit
     Uint32 countdown = 30;
-    char time_text[15];
+
     bool is_paused = false;
 
 
@@ -38,14 +39,21 @@ void run_question() {
     SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
 
     // Make background image texture
-    SDL_Texture* qbackground_texture = IMG_LoadTexture(renderer, question_background.c_str());
+    SDL_Texture* background_texture = IMG_LoadTexture(renderer, question_background.c_str());
 
     // Generate fonts
-    TTF_Font* gagalin = TTF_OpenFont("/Users/brynleemaya/PIVOT/PIVOT-boardgame/fonts/Gagalin.otf", 12);
+    TTF_Font* gagalin = TTF_OpenFont("/Users/brynleemaya/PIVOT/PIVOT-boardgame/fonts/Gagalin.otf", 12); // TODO: Fix this too!
 
     bool running = true;
 
+    string text_sample = "Hi!";
+
     SDL_Event event;
+
+    SDL_Surface* text_surface;
+    SDL_Texture* texture;
+
+    // Creating color
     SDL_Color white = {0, 0, 0, 0};
 
     while (running) {
@@ -56,12 +64,16 @@ void run_question() {
             }
 
 
-            SDL_Texture* total_texture = SDL_CreateTextureFromSurface(renderer, countdown);
-            SDL_Rect total_rect = {530, 420, countdown->w, countdown->h};
-            SDL_RenderCopy(renderer, total_texture, NULL, &total_rect);
+            // Create texture for timer text
+            text_surface = TTF_RenderText_Solid(gagalin, text_sample.c_str(), 0, white);
+            texture = SDL_CreateTextureFromSurface( renderer, text_surface);
+            int width = text_surface->w;
+            int height = text_surface->h;
+
+            // Load?
 
 
-            sprintf(time_text, "%02d", countdown);
+
 
             // Timer mechanics
             if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
@@ -87,22 +99,19 @@ void run_question() {
         SDL_RenderClear(renderer);
 
         // Set intended image as background
-        SDL_RenderTexture(renderer, qbackground_texture, NULL, NULL);
+        SDL_RenderTexture(renderer, background_texture, NULL, NULL);
 
-        SDL_Surface* text_surface = TTF_RenderText_Blended(gagalin, time_text, white);
-        SDL_Texture* text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
+
 
         SDL_RenderPresent(renderer);
-
-        SDL_Rect text_rect = {185, 420, text_surface->w, text_surface->h};
-
-        SDL_RenderCopy(renderer, text_texture, NULL, &text_rect);
 
     }
 
     // Destroy all
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
+    SDL_DestroySurface(text_surface);
+    SDL_DestroyTexture(background_texture);
     SDL_Quit();
 
 }
