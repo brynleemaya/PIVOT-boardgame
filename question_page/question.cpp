@@ -56,14 +56,12 @@ void run_question() {
             }
 
 
-            SDL_Surface* total = TTF_RenderText_Blended(gagalin, countdown, white);
-
-            SDL_Texture* total_texture = SDL_CreateTextureFromSurface(renderer, total);
-            SDL_Rect total_rect = {530, 420, total->w, total->h};
+            SDL_Texture* total_texture = SDL_CreateTextureFromSurface(renderer, countdown);
+            SDL_Rect total_rect = {530, 420, countdown->w, countdown->h};
             SDL_RenderCopy(renderer, total_texture, NULL, &total_rect);
 
 
-            sprintf(time_text, "%02d:%02d", minutes, seconds);
+            sprintf(time_text, "%02d", countdown);
 
             // Timer mechanics
             if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
@@ -95,6 +93,10 @@ void run_question() {
         SDL_Texture* text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
 
         SDL_RenderPresent(renderer);
+
+        SDL_Rect text_rect = {185, 420, text_surface->w, text_surface->h};
+
+        SDL_RenderCopy(renderer, text_texture, NULL, &text_rect);
 
     }
 
